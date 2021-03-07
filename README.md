@@ -1,0 +1,2 @@
+# TRI
+ Tandem Repeat Identifier
