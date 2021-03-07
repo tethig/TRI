@@ -1,38 +1,50 @@
 # Tandem Repeat Identifier
 
 ## Purpose
-This is a small program for detecting perfect, tandem sequence repeats in a FASTA file containing one or more sequences. It will detect only repeats with motifs of a user-specified length and will not return repeats with longer motifs, or which can be decomposed into repeats with a shorter motif. The program cannot detect imperfect or interrupted repeats.
+This repository contains two small programs for detecting perfect, tandem sequence repeats in a FASTA file containing one or more sequences. These programs will detect only repeats with motifs of a **user-specified length**. The program will look only for repeats of the length specified at run time. Repeats of longer motifs, or repeats of motifs that can themselves be decomposed into shorter motifs, will not be identified. However, identified repeats may overlap with one another (e.g., ATA.ATA.ATA.A can be read as A.TAA.TAA.TAA). Neither program can detect imperfect or interrupted repeats.
+
+## Sample Use Case
+You could run this script multiple times to detect the presence of repeats with different motif lengths in a large number of viral genomes. If you need to detect multiple different types of repeat in a single run (including more complex types such as interspersed repeats in a eukaryotic genome) consider a tool such as [RepeatMasker](http://www.repeatmasker.org).
+
+## Input File
+The input file must be a DNA [FASTA file](https://en.wikipedia.org/wiki/FASTA_format) containing one or more DNA sequences. Amino acid sequences are not analyzed by this program. The file must have a `.fasta`, `.fna` or `.fa` extension.
+
+## Output Files
+The TRIMAN program returns a human-readable tab-separated values (TSV) output file. A comment line at the top of the file shows the parameters chosen and a header row is included. The TSV file is 1-based throughout (meaning that a repeat with start=623 begins at the 623rd nucleotide in the FASTA entry).
+
+The TRIBED program generates a BED6 file (a BED file with 6 columns; see specifications [linked here](https://bedtools.readthedocs.io/en/latest/content/general-usage.html#bed-format)). BED files have 0-based start and 1-based end coordinates.
+
+Output files are not sorted by coordinates. Use a tool such as [bedtools sort](https://bedtools.readthedocs.io/en/latest/content/tools/sort.html) to do this.
 
 ## Installation
-You may download and execute the program in an environment containing python3.
+You may download and execute the program in an environment containing python3. Biopython is not required.
 
-## Running the Script
-To execute the script you can invoke python directly providing a single FASTA file as input:
+## Execution
+To run the script you can invoke python directly. Provide the FASTA input file as the sole argument:
 ```
 python3 TRI_v_1_0.py NC_045512.2.fasta
 ```
-or modify the permissions and run:
+
+An alternative method of execution is possible if you first modify the permissions:
 ```
 chmod 755 TRI_v_1_0.py  # you need only do this once
+```
+and then you can execute from bash/zsh:
+```
 ./TRI_v_1_0.py NC_045512.2.fasta
 ```
-You may then answer the questions as prompted to determine:
 
-* the motif size detected (e.g., if you enter 7 then septanucleotide repeats will be detected)
+## Options
+No options are set when the script is invoked. However, you will be prompted and have to answer three questions to determine:
+
+* the motif size in identified repeats (e.g., if you enter 7 then septanucleotide repeats will be detected)
 * the minimum number of repeats (e.g., if you enter 4, tandem repeats with 3 or fewer repeats will be ignored),
 * the output file name (esp. if you want to use an alternative name).
 
-In each case a default is indicated and will be used if the user presses enter with no other input.
+In each case a default is indicated and will be used if the user presses _Enter_ with no other input.
 
-The input file may contain one or more DNA sequences and must have a `.fasta`, `.fna` or `.fa` extension. Amino acid sequences are not analyzed by this program.
-
-## Output
-The output is a tab separated file with a comment line indicating run parameters and a header showing column contents.
-
-## Acknowledgements
-The Wuhan SARS-CoV-2 sequence (Wu et al., 2020) used in this repository was obtained from NCBI (2021) Nucleotide database.
-
-Detection of repetitive strings took advantage of the solution [cited here](https://stackoverflow.com/a/29489919) and was used to exclude motifs that are themselves repetitive.
+# Acknowledgements
+The Wuhan SARS-CoV-2 sequence (Wu et al., 2020) used in this repository was obtained from NCBI (2021) Nucleotide database. Detection of repetitive strings took advantage of a solution found on Stack Overflow (Zhang, 2015) and was used to exclude motifs that are themselves repetitive. Yes I know this is a somewhat typical pattern while coding!
 
 >National Center for Biotechnology Information (NCBI)[Internet]. Bethesda (MD): National Library of Medicine (US), National Center for Biotechnology Information; [1988] – [cited 2021 Mar 07]. Available from: https://www.ncbi.nlm.nih.gov/
 
@@ -41,9 +53,10 @@ Detection of repetitive strings took advantage of the solution [cited here](http
 >Zhang D. [2015 Apr 07]. StackOverflow Response. Permalink: https://stackoverflow.com/a/29489919
 
 ## Licence
-Please see licence file in this repository.
+Please see the file called LICENSE in this repository for details.
 
-## Sample Output from SARS-CoV-2 Wuhan Sequence
+## Sample TSV Output from SARS-CoV-2 Wuhan Sequence
+For ease of reading this is formatted into a table. See sample outputs directly in this repository.
 
 `#TandemRepeatIdentifier v.1.0.0. Settings: motif_length: 3, min_reps: 3.`
 | genome                                                                                            | motif   | genomesize   | start   | end     | sequence       | strand   |
