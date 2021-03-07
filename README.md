@@ -24,7 +24,7 @@ You may download and execute the program in an environment containing python3. B
 ## Execution
 To run the script you can invoke python directly. Provide the FASTA input file as the sole argument:
 ```
-python3 TRI_v_1_0.py NC_045512.2.fasta
+python3 TRIMAN_v_1_0.py NC_045512.2.fasta
 ```
 
 An alternative method of execution is possible if you first modify the permissions:
@@ -37,16 +37,16 @@ and then you can execute from bash/zsh:
 ```
 
 ## Options
-No options are set when the script is invoked. However, you will be prompted and have to answer three questions to determine:
+No options are set when the script is invoked. However, you will be prompted to answer three questions to determine:
 
 * the motif size in identified repeats (e.g., if you enter 7 then septanucleotide repeats will be detected)
 * the minimum number of repeats (e.g., if you enter 4, tandem repeats with 3 or fewer repeats will be ignored),
 * the output file name (esp. if you want to use an alternative name).
 
-In each case a default is indicated and will be used if the user presses _Enter_ with no other input.
+In each case a default is indicated and will be used if the user presses the _Enter_ key with no other input.
 
 # Acknowledgements
-The Wuhan SARS-CoV-2 sequence (Wu et al., 2020) used in this repository was obtained from NCBI (2021) Nucleotide database. Detection of repetitive strings took advantage of a solution found on Stack Overflow (Zhang, 2015) and was used to exclude motifs that are themselves repetitive. Yes I know this is a somewhat typical pattern while coding!
+The Wuhan SARS-CoV-2 sequence (Wu et al., 2020) used in this repository was obtained from the NCBI (2021) Nucleotide database. Detection of repetitive strings took advantage of a solution found on Stack Overflow (Zhang, 2015) and was used to exclude motifs that are themselves repetitive. Yes, I know we all do this while coding!
 
 >National Center for Biotechnology Information (NCBI)[Internet]. Bethesda (MD): National Library of Medicine (US), National Center for Biotechnology Information; [1988] – [cited 2021 Mar 07]. Available from: https://www.ncbi.nlm.nih.gov/
 
