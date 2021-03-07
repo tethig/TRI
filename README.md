@@ -1,7 +1,9 @@
 # Tandem Repeat Identifier
 
 ## Purpose
-This repository contains two small programs for detecting perfect, tandem sequence repeats in a FASTA file containing one or more sequences. These programs will detect only repeats with motifs of a **user-specified length**. The program will look only for repeats of the length specified at run time. Repeats of longer motifs, or repeats of motifs that can themselves be decomposed into shorter motifs, will not be identified. However, identified repeats may overlap with one another (e.g., ATA.ATA.ATA.A can be read as A.TAA.TAA.TAA). Neither program can detect imperfect or interrupted repeats.
+This repository contains two small programs for detecting perfect, tandem sequence repeats in a FASTA file containing one or more sequences. These programs will detect only repeats with motifs of a **user-specified length**.
+
+The program will look only for repeats of the length specified at run time. Repeats of longer motifs, or repeats of motifs that can themselves be decomposed into shorter motifs, will not be identified. However, identified repeats may overlap with one another (e.g., `ATA.ATA.ATA.A` can be read as `A.TAA.TAA.TAA`). Neither program can detect imperfect or interrupted repeats.
 
 ## Sample Use Case
 You could run this script multiple times to detect the presence of repeats with different motif lengths in a large number of viral genomes. If you need to detect multiple different types of repeat in a single run (including more complex types such as interspersed repeats in a eukaryotic genome) consider a tool such as [RepeatMasker](http://www.repeatmasker.org).
