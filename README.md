@@ -29,11 +29,11 @@ python3 TRI_v_1_0.py NC_045512.2.fasta
 
 An alternative method of execution is possible if you first modify the permissions:
 ```
-chmod 755 TRI_v_1_0.py  # you need only do this once
+chmod 755 TRIMAN_v_1_0.py  # you need only do this once
 ```
 and then you can execute from bash/zsh:
 ```
-./TRI_v_1_0.py NC_045512.2.fasta
+./TRIMAN_v_1_0.py NC_045512.2.fasta
 ```
 
 ## Options
